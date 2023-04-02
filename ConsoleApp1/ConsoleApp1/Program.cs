@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Text;
 
+string filePath = "D:\\LoremIpsum.txt";
+
 void readFileMenu()
 {
-    string filePath = "D:\\LoremIpsum.txt";
-
     Console.WriteLine("Write the number of words you want to see: ");
 
     int n = Convert.ToInt32(Console.ReadLine());
