@@ -32,9 +32,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Creating an instance of MachineLearningData
         var mlData = new MachineLearningData();
-        mlData.modelFile = "model.json"; // присвоєння значення полю modelFile
+        mlData.modelFile = "model.json";
 
         // Using Type and TypeInfo
         Type type = typeof(MachineLearningData);
