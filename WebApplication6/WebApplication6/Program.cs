@@ -1,9 +1,16 @@
+using PracticeAPI.Services.CharacterService;
+using PracticeAPI.Services.GameAccountService;
+using PracticeAPI.Services.QuestService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<ICharacterService, CharacterService>(); // add singleton to save data state between requests
+builder.Services.AddSingleton<IQuestService, QuestService>();
+builder.Services.AddSingleton<IGameAccountService, GameAccountService>();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
