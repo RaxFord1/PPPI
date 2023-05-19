@@ -1,4 +1,5 @@
-﻿using PracticeAPI.DTO.GameAccount;
+﻿using PracticeAPI.DTO;
+using PracticeAPI.DTO.GameAccount;
 using PracticeAPI.Models;
 using PracticeAPI.Services.CharacterService;
 using PracticeAPI.Services.QuestService;

@@ -1,4 +1,5 @@
-﻿using PracticeAPI.DTO.Character;
+﻿using PracticeAPI.DTO;
+using PracticeAPI.DTO.Character;
 using PracticeAPI.Models;
 
 namespace PracticeAPI.Services.CharacterService

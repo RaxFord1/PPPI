@@ -1,4 +1,5 @@
-﻿using PracticeAPI.DTO.GameAccount;
+﻿using PracticeAPI.DTO;
+using PracticeAPI.DTO.GameAccount;
 using PracticeAPI.Models;
 
 namespace PracticeAPI.Services.GameAccountService

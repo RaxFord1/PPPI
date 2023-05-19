@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PracticeAPI.DTO;
 using PracticeAPI.DTO.GameAccount;
 using PracticeAPI.Models;
 using PracticeAPI.Services.GameAccountService;
@@ -8,6 +10,7 @@ namespace PracticeAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class GameAccountsController : ControllerBase
     {
         private readonly IGameAccountService _gameAccountService;

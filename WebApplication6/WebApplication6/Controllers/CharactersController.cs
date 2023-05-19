@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PracticeAPI.DTO;
 using PracticeAPI.DTO.Character;
 using PracticeAPI.Models;
 using PracticeAPI.Services.CharacterService;
@@ -9,6 +11,7 @@ namespace PracticeAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CharactersController : ControllerBase
     {
         private readonly ICharacterService _characterService;

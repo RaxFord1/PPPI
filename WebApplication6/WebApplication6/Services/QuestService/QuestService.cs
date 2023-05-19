@@ -1,4 +1,5 @@
-﻿using PracticeAPI.DTO.Quest;
+﻿using PracticeAPI.DTO;
+using PracticeAPI.DTO.Quest;
 using PracticeAPI.Extensions;
 using PracticeAPI.Models;
 

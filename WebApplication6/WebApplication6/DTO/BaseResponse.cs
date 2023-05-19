@@ -1,4 +1,4 @@
-﻿namespace PracticeAPI.Models
+﻿namespace PracticeAPI.DTO
 {
     public class BaseResponse<T>
     {
