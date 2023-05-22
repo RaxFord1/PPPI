@@ -8,8 +8,8 @@ using PracticeAPI.Services.GameAccountService;
 
 namespace PracticeAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     [Authorize]
     public class GameAccountsController : ControllerBase
     {

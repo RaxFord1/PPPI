@@ -8,9 +8,8 @@ using PracticeAPI.Services.QuestService;
 
 namespace PracticeAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Route("api/[controller]")]
     public class QuestsController : ControllerBase
     {
         private readonly IQuestService _questService;

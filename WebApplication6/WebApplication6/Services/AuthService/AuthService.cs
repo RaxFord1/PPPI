@@ -142,6 +142,7 @@ namespace PracticeAPI.Services.AuthService
                 _users.Add(user);
                 return new BaseResponse<UserResponse>()
                 {
+                    Success = true,
                     Message = "User registered",
                     StatusCode = StatusCodes.Status201Created,
                     ValueCount = 1,

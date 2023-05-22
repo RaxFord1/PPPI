@@ -9,8 +9,8 @@ using PracticeAPI.Services.CharacterService;
 
 namespace PracticeAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     [Authorize]
     public class CharactersController : ControllerBase
     {

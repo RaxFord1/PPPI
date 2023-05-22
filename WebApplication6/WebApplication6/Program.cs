@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
@@ -7,6 +9,9 @@ using PracticeAPI.Services.CharacterService;
 using PracticeAPI.Services.GameAccountService;
 using PracticeAPI.Services.PasswordService;
 using PracticeAPI.Services.QuestService;
+using PracticeAPI.Services.VersionedServices.V1;
+using PracticeAPI.Services.VersionedServices.V2;
+using PracticeAPI.Services.VersionedServices.V3;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +22,16 @@ builder.Services.AddSingleton<IQuestService, QuestService>();
 builder.Services.AddSingleton<IGameAccountService, GameAccountService>();
 builder.Services.AddSingleton<IPasswordService, PasswordService>(); // singleton to be consumed by other singleton services
 builder.Services.AddSingleton<IAuthService, AuthService>();
+
+builder.Services.AddScoped<INumberService, NumberService>();
+builder.Services.AddScoped<IStringService, StringService>();
+builder.Services.AddScoped<IExcelFileService, ExcelFileService>();
+
+//builder.Services.AddApiVersioning(apiVersioningOptions =>
+//{
+//    apiVersioningOptions.ApiVersionReader = new UrlSegmentApiVersionReader();
+//});
+//builder.Services.AddVersionedApiExplorer();
 
 builder.Services.AddControllers();
 
@@ -36,7 +51,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "PracticeAPI", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Practice API v1.0", Version = "v1" });
+    c.SwaggerDoc("v2", new OpenApiInfo { Title = "Practice API v2.0", Version = "v2" });
+    c.SwaggerDoc("v3", new OpenApiInfo { Title = "Practice API v3.0", Version = "v3" });
+
     c.AddSecurityDefinition(
         name: "token",
         securityScheme: new OpenApiSecurityScheme
@@ -64,8 +82,7 @@ builder.Services.AddSwaggerGen(c =>
             }
         }
     );
-}
-);
+});
 
 var app = builder.Build();
 
@@ -73,12 +90,22 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Practice API V1.0");
+        options.SwaggerEndpoint("/swagger/v2/swagger.json", "Practice API V2.0");
+        options.SwaggerEndpoint("/swagger/v3/swagger.json", "Practice API V3.0");
+
+        options.RoutePrefix = "swagger";
+        options.DocumentTitle = "Practice API";
+    });
 }
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+//app.UseApiVersioning();
 
 app.MapControllers();
 
